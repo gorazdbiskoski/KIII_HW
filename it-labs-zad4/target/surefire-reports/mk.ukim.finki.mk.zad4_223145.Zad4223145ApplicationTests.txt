@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: mk.ukim.finki.mk.zad4_223145.Zad4223145ApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.387 s -- in mk.ukim.finki.mk.zad4_223145.Zad4223145ApplicationTests
