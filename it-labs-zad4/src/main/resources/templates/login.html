@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+
+    <script>
+        function clearForm() {
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+        }
+
+        window.onload = function() {
+            const cancelButton = document.getElementById('cancelButton');
+            cancelButton.addEventListener('click', clearForm);
+        }
+    </script>
+</head>
+<body>
+<form th:action="@{/}" method="post" id="loginForm">
+    <div>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username"/>
+    </div>
+    <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password"/>
+    </div>
+    <div>
+        <button type="submit">Submit</button>
+        <button type="button" id="cancelButton">Cancel</button>
+    </div>
+</form>
+<div th:if="${loginError}" class="error">LOGIN UNSUCCESSFUL</div>
+
+</body>
+</html>
