@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  cgi_app:
+    image: zad1
+    container_name: cgi_app
+    ports:
+      - "8080:80"
+    networks:
+      - my_network  # Use the same network here
+
+  spring_boot_app:
+    image: zad3
+    container_name: spring_boot_app
+    ports:
+      - "8081:8081"
+    networks:
+      - my_network  # Use the same network here
+
+  main_app:
+    build: .
+    image: zad4
+    container_name: main_app
+    ports:
+      - "8083:8083"
+    networks:
+      - my_network  # Use the same network here
+    depends_on:
+      - cgi_app
+      - spring_boot_app
+
+networks:
+  my_network:
+    driver: bridge  # Define the network here

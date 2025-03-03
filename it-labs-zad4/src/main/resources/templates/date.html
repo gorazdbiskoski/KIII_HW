@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Date</title>
+    <script>
+        function validateForm(event) {
+            const radios = document.getElementsByName('choice');
+            let isSelected = false;
+
+            for (let i = 0; i < radios.length; i++) {
+                if (radios[i].checked) {
+                    isSelected = true;
+                    break;
+                }
+            }
+            if (!isSelected) {
+                event.preventDefault();
+            }
+        }
+
+        function clearForm() {
+            const radios = document.getElementsByName('choice');
+            for (let i = 0; i < radios.length; i++) {
+                radios[i].checked = false;
+            }
+            document.getElementById('inputField').value = '';
+        }
+
+        window.onload = function() {
+            const form = document.getElementById('choiceForm');
+            form.addEventListener('submit', validateForm);
+
+            const cancelButton = document.getElementById('cancelButton');
+            cancelButton.addEventListener('click', clearForm);
+        }
+    </script>
+    <style>
+        nav {
+            display: flex;
+            justify-content: end;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <p>Logged in as: <b><span th:text="${username}">[username]</span></b></p>
+    <p>Role: <b><span th:text="${role}">[role]</span></b></p>
+</nav>
+<ul>
+    <li><a th:href="@{http://localhost:8081}">zad1</a></li>
+    <li><a th:href="@{http://localhost:8082}">zad2</a></li>
+    <li><a th:href="@{http://localhost:8083}">zad3</a></li>
+</ul>
+<form th:action="@{/date}" method="post" id="choiceForm">
+    <div>
+        <input type="radio" id="cgi" name="choice" value="cgi"/>
+        <label for="cgi">CGI</label>
+    </div>
+    <div>
+        <input type="radio" id="java" name="choice" value="java"/>
+        <label for="java">Java</label>
+    </div>
+    <div>
+        <input type="radio" id="dotnet" name="choice" value="dotnet"/>
+        <label for="dotnet">Dotnet</label>
+    </div>
+    <div>
+        <label for="inputField">Input:</label>
+        <input type="text" placeholder="time=value" id="inputField" name="inputField"/>
+    </div>
+    <div>
+        <button type="submit">Submit</button>
+        <button type="button" id="cancelButton">Cancel</button>
+    </div>
+</form>
+<div>
+    <p th:text="${dateResult}"></p>
+</div>
+
+</body>
+</html>
